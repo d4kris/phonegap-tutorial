@@ -5,9 +5,9 @@ var app = {
         //this.store = new MemoryStore();
         //this.store = new LocalStorageStore();
         this.store = new WebSqlStore(function () {
-            //self.showAlert('Store initialized', 'All went well...');
-            $('body').html(new HomeView(self.store).render().el);
+            self.route();
         });
+        this.detailsURL = /^#employees\/(\d{1,})/;
         this.registerEvents();
     }, 
 
@@ -39,6 +39,24 @@ var app = {
             });
             $('body').on('mouseup', 'a', function(event) {
                 $(event.target).removeClass('tappable-active');
+            });
+        }
+        $(window).on('hashchange', $.proxy(this.route, this));
+    }, 
+
+    route: function() {
+        var hash = window.location.hash;
+        if (!hash) {
+            if (!this.HomeView) {
+                this.HomeView = new HomeView(this.store);
+            }
+            $('body').html(this.HomeView.render().el);
+            return;
+        }
+        var match = hash.match(app.detailsURL);
+        if (match) {
+            this.store.findById(Number(match[1]), function(employee) {
+                $('body').html(new EmployeeView(employee).render().el);
             });
         }
     }

@@ -1,17 +1,15 @@
 <html>
-	<body>
+	<head>
+		<link href="css/styles.css" rel="stylesheet">
+		<script src="css/source-sans-pro.js"></script>
 
-		<script src="lib/jquery-1.8.2.min.js"></script>
-		<!--script src="js/storage/memory-store.js"></script-->
-		<script src="js/storage/websql-store.js"></script>
-		<!--script src="js/storage/ls-store.js"></script-->
-		<script src="phonegap.js"></script>
-		<script src="lib/handlebars.js"></script>
+	</head>
+	<body>
 
 		<script id="home-tpl" type="text/x-handlebars-template">
 		    <div class='header'><h1>Home</h1></div>
 		    <div class='search-bar'><input class='search-key' type="search"/></div>
-		    <ul class='employee-list'></ul>
+		    <div class="scroll"><ul class='employee-list'></ul></div>
 		</script>
 
 		<script id="employee-li-tpl" type="text/x-handlebars-template">
@@ -20,6 +18,13 @@
 		    {{this.title}}</a></li>
 		    {{/.}}
 		</script>
+
+		<script src="lib/jquery-1.8.2.min.js"></script>
+		<!--script src="js/storage/memory-store.js"></script-->
+		<script src="js/storage/websql-store.js"></script>
+		<!--script src="js/storage/ls-store.js"></script-->
+		<script src="phonegap.js"></script>
+		<script src="lib/handlebars.js"></script>
 
 		<script src="js/HomeView.js"></script>
 		<script src="js/main.js"></script>

@@ -14,6 +14,13 @@ var HomeView  = function (store) {
         console.log('findByName');
         store.findByName($('.search-key').val(), function(employees) {
             $('.employee-list').html(HomeView.employeeLiTpl(employees));
+            if (self.iscroll) {
+            	console.log('Refresh iScroll');
+            	self.iscroll.refresh();
+            } else {
+            	console.log('New iScroll');
+            	self.iscroll = new iScroll($('.scroll', self.el)[0], {hScrollbar: false, vScrollbar: false});
+            }
         });
     };
 
